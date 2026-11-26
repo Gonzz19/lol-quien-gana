@@ -74,18 +74,18 @@ def test_recorrido_y_draftrec_se_dibujan_con_y_sin_test(tmp_path, monkeypatch):
     assert {p.name for p in tmp_path.glob("*.png")} == {"04b_recorrido_previo.png", "04c_draftrec.png"}
 
 
-def test_test_contra_v_con_y_sin_evaluacion(tmp_path, monkeypatch):
-    """Sin evaluación del test, aviso; con ella, la figura toma la cohorte del minuto 20 de los dos conjuntos."""
+def test_figura_test_con_y_sin_evaluacion(tmp_path, monkeypatch):
+    """Sin evaluación del test, aviso; con ella, la figura toma la cohorte del minuto 20 del test (sin V)."""
     from src.informe import figuras as F
     monkeypatch.setattr(E, "CARPETA_PNG", tmp_path)
     monkeypatch.setattr(D, "TEST_FINAL", tmp_path / "no_existe")
-    assert "Pendiente" in F.fig_test_vs_v().data
+    assert "Pendiente" in F.fig_test().data
     if not (D.METRICAS_EN_VIVO.exists() and (D.DATA / "analysis" / "test_final" / "metricas.csv").exists()):
         return
     monkeypatch.setattr(D, "TEST_FINAL", D.DATA / "analysis" / "test_final")
-    filas = F._filas_test_vs_v()
+    filas = F._filas_test()
     assert [f[0].split()[0] for f in filas] == ["Antes", "Minuto", "Minuto", "Minuto"]
-    assert all(f[2]["conjunto"] == "cohorte 20" and f[2]["ic"] == "dias" for f in filas)
-    assert len({int(f[2]["n"]) for f in filas}) == 1      # las mismas partidas en los cuatro momentos
-    F.fig_test_vs_v()
-    assert (tmp_path / "04a_test_contra_v.png").exists()
+    assert all(f[1]["conjunto"] == "cohorte 20" and f[1]["ic"] == "dias" for f in filas)
+    assert len({int(f[1]["n"]) for f in filas}) == 1      # las mismas partidas en los cuatro momentos
+    F.fig_test()
+    assert (tmp_path / "04a_test.png").exists()

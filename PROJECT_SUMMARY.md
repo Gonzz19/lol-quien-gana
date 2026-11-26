@@ -9352,6 +9352,8 @@ test − V con IC: los dos conjuntos son disjuntos y los IC salen de esquemas de
 la diferencia exigiría recalcular sobre las predicciones de V, y no cambia la lectura (todas las diferencias son
 ≤ 0,007 a favor del test).
 
+**Solo el test (2026-11-26, pedido del profesor vía el usuario).** La figura deja de mostrar V: el profesor pidió reportar únicamente el test. `fig_test_vs_v` pasa a `fig_test` (`04a_test.png`, reemplaza a `04a_test_contra_v.png`) con los cuatro momentos en la cohorte del minuto 20 del test (33.821 partidas, IC por bloques de días); se conserva la cohorte para que los cuatro puntos sean las mismas partidas. El texto del notebook ya no habla de "¿se sostiene V?". Como `informe_final` no se puede reejecutar entero en esta PC (la caché `pred_v.npz` quedó desalineada con la partición Master+ unificada en el merge del 25/11, ver §9.S.80), se reemplazaron solo esa celda de código, su imagen y el texto de arriba.
+
 **Cierre (2026-11-25, decisión del usuario).** `informe_final` queda con el texto y el estilo actuales: es para el equipo, y la idea era que fuera corto y conciso. Los otros notebooks no se archivan ni se editan: siguen como registro del trabajo, así que los arreglos que el issue #6 pedía en `eda_modelos_ganador` (números escritos a mano en la celda 13, "algo menos en el test", "jugadores solos" 0,6369) no se aplican. El número que vale es el del test, en `informe_final` y en el log de la evaluación.
 
 #### S.82. El recorrido del modelo previo y DraftRec en los notebooks (2026-11-24, issue #6)

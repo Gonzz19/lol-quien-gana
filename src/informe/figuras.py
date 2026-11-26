@@ -487,64 +487,59 @@ def seccion_test():
     return _tabla(met[cols].round(4))
 
 
-def _filas_test_vs_v() -> list[tuple[str, pd.Series, pd.Series]] | None:
-    """(etiqueta, fila de V, fila del test) para el previo y el en vivo a 10/15/20, todos en la cohorte de las partidas
-    vivas al minuto 20 (la misma definición en los dos conjuntos); None si todavía no hay evaluación del test."""
+def _filas_test() -> list[tuple[str, pd.Series]] | None:
+    """(etiqueta, fila del test) para el previo y el en vivo a 10/15/20, todos en la cohorte de las partidas vivas al
+    minuto 20 (las mismas partidas en los cuatro momentos); None si todavía no hay evaluación del test."""
     met = D.resultados_test().get("metricas")
     if met is None:
         return None
-    M = D.metricas_en_vivo()
     t = met[(met.conjunto == "cohorte 20") & (met.ic == "dias")]
 
     def de_test(modelo, m):
         f = t[(t.modelo == modelo) & (pd.to_numeric(t.minuto, errors="coerce") == m)]
         assert len(f) == 1, (modelo, m)
         return f.iloc[0]
-    filas = [("Antes de\nla partida", _fila(M, "V cohorte 20", "previo", 10), de_test("previo_hacia_adelante", 10))]
-    filas += [(f"Minuto {m}", _fila(M, "V cohorte 20", "etapa1", m), de_test("en_vivo", m)) for m in (10, 15, 20)]
+    filas = [("Antes de\nla partida",de_test("previo_hacia_adelante", 10))]
+    filas += [(f"Minuto {m}", de_test("en_vivo", m)) for m in (10, 15, 20)]
     return filas
 
 
-def fig_test_vs_v():
-    """AUC y acierto en V y en el test, lado a lado, con la misma cohorte en los dos: ¿se sostiene lo de V?"""
-    filas = _filas_test_vs_v()
+def fig_test():
+    """AUC y acierto en el test, con la misma cohorte en los cuatro momentos (solo test: no se reporta V)."""
+    filas = _filas_test()
     if filas is None:
         return Markdown(AVISO_TEST)
     fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.1))
     x = np.arange(len(filas))
-    dx = 0.2
     for ax, met, d, porc, nombre in [(axes[0], "auc", 2, False, "AUC"), (axes[1], "acierto", 0, True, "Acierto")]:
-        for k, (lado, color, etq) in enumerate([(-dx, RAMPA[0], "Validación (V)"), (dx, MODELO, "Test")]):
-            v = np.array([f[k + 1][met] for f in filas])
-            lo = np.array([f[k + 1][f"{met}_lo"] for f in filas])
-            hi = np.array([f[k + 1][f"{met}_hi"] for f in filas])
-            ax.errorbar(x + lado, v, yerr=[v - lo, hi - v], fmt="o", color=color, ms=8, mec="white", mew=1.5,
-                        ecolor=TINTA, elinewidth=1, capsize=0, label=etq, zorder=3)
-            for xi, vi, hii in zip(x + lado, v, hi):               # el número arriba de cada punto
-                ax.annotate(E.pct(vi) if porc else E.num(vi, 3), (xi, hii), xytext=(0, 7), textcoords="offset points",
-                            ha="center", va="bottom", fontsize=8.4, color=TINTA if k else TINTA_2)
+        v = np.array([f[1][met] for f in filas])
+        lo = np.array([f[1][f"{met}_lo"] for f in filas])
+        hi = np.array([f[1][f"{met}_hi"] for f in filas])
+        ax.errorbar(x, v, yerr=[v - lo, hi - v], fmt="o", color=MODELO, ms=8, mec="white", mew=1.5,
+                    ecolor=TINTA, elinewidth=1, capsize=0, zorder=3)
+        for xi, vi, hii in zip(x, v, hi):                           # el número arriba de cada punto
+            ax.annotate(E.pct(vi) if porc else E.num(vi, 3), (xi, hii), xytext=(0, 7), textcoords="offset points",
+                        ha="center", va="bottom", fontsize=8.4, color=TINTA)
         if porc:
-            base = filas[0][2]["siempre_rojo"]
+            base = filas[0][1]["siempre_rojo"]
             ax.axhline(base, color=GRIS, lw=1)
-            ax.text(len(filas) - 0.45, base, "siempre rojo (test)", ha="right", va="bottom", fontsize=8.6,
-                    color=TINTA_2)
+            ax.text(len(filas) - 0.55, base, "siempre rojo", ha="right", va="bottom", fontsize=8.6, color=TINTA_2)
             ax.set_ylim(0.5, 0.82)
         else:
             ax.set_ylim(0.62, 0.9)
         ax.set_xticks(x, [f[0] for f in filas])
-        ax.set_xlim(-0.5, len(filas) - 0.4)
+        ax.set_xlim(-0.5, len(filas) - 0.5)
         ax.grid(axis="x", visible=False)
         E.eje_coma(ax, "y", d, porcentaje=porc)
         ax.set_title(nombre, loc="left", fontsize=10.5, pad=14)
     axes[0].set_ylabel("IC 95 %")
-    axes[0].legend(loc="upper left", frameon=False, handletextpad=0.3)
-    nv, nt = int(filas[0][1]["n"]), int(filas[0][2]["n"])
-    fig.suptitle("En el test, los dos modelos rinden lo mismo que en V\n", x=0.01, ha="left", fontsize=11.5,
+    nt = int(filas[0][1]["n"])
+    fig.suptitle("Resultado en el test, antes de la partida y en vivo\n", x=0.01, ha="left", fontsize=11.5,
                  fontweight="semibold")
-    fig.text(0.01, 0.93, f"Partidas vivas al minuto 20 de cada conjunto ({E.entero(nv)} en V, {E.entero(nt)} en el "
-             "test). IC 95 %: bootstrap de días en el test y de partidas en V; casi todos son más chicos que el punto",
-             ha="left", va="top", fontsize=9.2, color=TINTA_2, in_layout=False)
-    return E.guardar(fig, "04a_test_contra_v")
+    fig.text(0.01, 0.93, f"Partidas del test vivas al minuto 20 ({E.entero(nt)}), las mismas en los cuatro momentos. "
+             "IC 95 %: bootstrap por bloques de días", ha="left", va="top", fontsize=9.2, color=TINTA_2,
+             in_layout=False)
+    return E.guardar(fig, "04a_test")
 
 
 def _auc_ventanas(df: pd.DataFrame, k: int, b: int = 500):

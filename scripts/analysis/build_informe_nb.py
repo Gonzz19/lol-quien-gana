@@ -119,11 +119,11 @@ rojo», log loss y error de calibración, con IC por bootstrap por bloques de d�
 """)
 code("F.seccion_test()")
 md(r"""
-**¿Se sostiene lo que se midió en V?** Con la misma definición en los dos conjuntos (las partidas que siguen vivas al
-minuto 20), el test da lo mismo que V o apenas más, en los cuatro momentos: no hubo sobreajuste a V por haber elegido
-el modelo mirándola. En esta cohorte el previo da 0,668; sobre todas las partidas del test, 0,6765 (la tabla de arriba).
+**Antes de la partida y en vivo.** Sobre las mismas partidas del test (las que siguen vivas al minuto 20), el AUC y
+el acierto de los cuatro momentos. En esta cohorte el previo da 0,668; sobre todas las partidas del test, 0,6765 (la
+tabla de arriba).
 """)
-code("F.fig_test_vs_v()")
+code("F.fig_test()")
 md(r"""
 **El recorrido.** Cada barra es un hito del modelo previo, medido en la misma V Master+; la última, el modelo final
 en el test. El salto grande es pasar de saber qué campeones se eligieron a saber quién juega (+5,8 puntos con el
