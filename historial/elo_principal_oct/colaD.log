@@ -1,0 +1,4 @@
+tabpfn_g2_grande_media                        MAE   74.5 | RMSE  118.7 | R2 0.718 | rho 0.877 TabPFN v2, 12000 filas de contexto, 8 estimadores, media (5388 s)
+tabpfn_g2_grande_mediana                      MAE   72.5 | RMSE  120.4 | R2 0.710 | rho 0.877 TabPFN v2, 12000 filas de contexto, 8 estimadores, mediana (5388 s)
+grid_l4.0_mediana                             MAE  121.1 | RMSE  195.9 | R2 0.233 | rho 0.777 filtro de grilla, mediana posterior; τ lobby 4.0, s 5.0, π 0.3/0.7 (310 s)
+cat_huber+grid_l4.0                           MAE   73.6 | RMSE  117.2 | R2 0.725 | rho 0.876 cat_huber + variables del filtro de grilla grid_l4.0 (35 s)

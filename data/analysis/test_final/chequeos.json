@@ -1,0 +1,16 @@
+{
+  "entrenamiento_anterior_a_la_evaluacion": true,
+  "evaluacion_toda_master_regla_split": true,
+  "previo_sin_nan": true,
+  "previo_alineado_con_en_vivo": true,
+  "en_vivo_10_sin_nan": true,
+  "en_vivo_15_sin_nan": true,
+  "en_vivo_20_sin_nan": true,
+  "fraccion_vivas_10": 0.994273577804065,
+  "vivas_10_suficientes": true,
+  "inicio_es_el_corte": true,
+  "evaluacion_son_las_del_test": true,
+  "diamante_son_las_diamante_despues": true,
+  "cobertura_test": 0.9785073527477441,
+  "cobertura_test_suficiente": true
+}

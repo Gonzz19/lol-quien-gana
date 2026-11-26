@@ -1,0 +1,6 @@
+tabpfn_media: caja lista
+tabpfn_mediana: caja lista
+tabpfn_g2_media                               MAE   74.9 | RMSE  119.7 | R2 0.713 | rho 0.876 TabPFN v2, 8000 filas de contexto, 4 estimadores, media (1679 s)
+tabpfn_g2_mediana                             MAE   73.1 | RMSE  121.2 | R2 0.706 | rho 0.875 TabPFN v2, 8000 filas de contexto, 4 estimadores, mediana (1679 s)
+tabpfn_g2_media: caja lista
+tabpfn_g2_mediana: caja lista

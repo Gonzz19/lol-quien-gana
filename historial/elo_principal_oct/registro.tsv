@@ -1,0 +1,223 @@
+gru_base	75.9	125.0	0.688	0.868	GRU completa de referencia, 1 semilla (83 s)
+gb_comp	80.3	129.8	0.663	0.853	GB completo de referencia (8 s)
+gb_comp_est	76.4	122.6	0.699	0.867	GB + piso/días sin jugar/hueco máx (8 s)
+gb_comp_est_agg	76.3	123.5	0.695	0.868	GB + estáticas + agregados (rendimiento, gap, wr viejas/nuevas) (9 s)
+gb_reg1	77.3	125.0	0.687	0.866	regularizado: hojas 200, 15 nodos, l2 1, lr .03, 1500 it, ES interno (14 s)
+gb_reg2	76.5	124.1	0.692	0.868	regularizado: hojas 100, 31 nodos, lr .03, 1500 it, ES interno (13 s)
+est_plus	74.8	123.9	0.693	0.871	estáticas + piso, días sin jugar, rango, lobby viejo/reciente (88 s)
+gb_reg3	76.3	123.5	0.695	0.868	regularizado + submuestreo de variables 0.5 (18 s)
+gb_l2	79.0	121.3	0.706	0.865	pérdida cuadrática, regularizado (7 s)
+paso_plus	76.1	127.2	0.676	0.868	por partida + gap, lobby foto2, lp del paso, racha (87 s)
+perf	76.6	126.8	0.678	0.868	por partida + rendimiento (kda, kp, daño, oro, muertes, duración) (85 s)
+todo	76.5	126.4	0.681	0.868	todas las variables (87 s)
+todo_kalbase	76.8	128.4	0.670	0.868	todas, base Kalman (87 s)
+todo_lstm	77.7	125.7	0.684	0.866	todas, LSTM (91 s)
+todo_bigru	77.6	127.5	0.675	0.864	todas, GRU bidireccional (135 s)
+todo_attn	75.9	126.5	0.680	0.869	todas, GRU + atención (120 s)
+todo_tf	82.1	135.0	0.636	0.850	todas, Transformer 2 capas (182 s)
+todo_ds	77.3	125.2	0.687	0.865	todas, DeepSets (47 s)
+mezcla(est_plus+gb_comp_est)	73.6	120.5	0.709	0.875	pesos est_plus 0.61, gb_comp_est 0.39
+promedio(est_plus+gb_comp_est)	73.7	120.2	0.711	0.874	pesos iguales
+mezcla(est_plus+gb_comp_est+gb_l2)	73.6	120.0	0.712	0.875	pesos est_plus 0.59, gb_comp_est 0.34, gb_l2 0.07
+promedio(est_plus+gb_comp_est+gb_l2)	74.3	118.4	0.720	0.874	pesos iguales
+mezcla(est_plus+todo_attn+gb_comp_est+gb_l2+todo_ds)	73.4	120.1	0.711	0.875	pesos est_plus 0.41, todo_attn 0.23, gb_comp_est 0.30, gb_l2 0.06, todo_ds 0.00
+promedio(est_plus+todo_attn+gb_comp_est+gb_l2+todo_ds)	73.8	119.2	0.716	0.875	pesos iguales
+gb_decay2	76.0	121.9	0.703	0.868	GB + piso + decay fino (excesos fin/ini/medio, banco, pisos 375/275) (8 s)
+gb_decay2_800	75.8	121.7	0.704	0.868	idem, 800 iteraciones lr .03 (16 s)
+gb_decay2_s1	76.0	121.9	0.703	0.868	idem, semilla 1 (ruido) (8 s)
+gb_decay2_s2	76.0	121.9	0.703	0.868	idem, semilla 2 (ruido) (8 s)
+est_plus_s1	74.8	123.9	0.693	0.871	est_plus, otra corrida (ruido) (85 s)
+est_plus_h96	79.0	131.4	0.655	0.857	estado 96, dropout .2, wd 1e-4 (90 s)
+est_plus_e60	77.4	129.0	0.667	0.862	60 épocas, dropout .1 (128 s)
+est_plus_2c	79.3	130.6	0.659	0.857	2 capas, dropout .2 (129 s)
+est_plus_lr1	75.2	124.0	0.692	0.870	lr 1e-3, 60 épocas (125 s)
+est_plus_s5	73.9	122.5	0.700	0.873	est_plus, promedio de 5 semillas (411 s)
+mezcla(est_plus_s5+gb_decay2_800)	73.0	119.8	0.713	0.876	pesos est_plus_s5 0.65, gb_decay2_800 0.35
+promedio(est_plus_s5+gb_decay2_800)	73.1	119.4	0.715	0.876	pesos iguales
+mezcla(est_plus_s5+gb_decay2_800+todo_attn)	73.0	119.9	0.712	0.876	pesos est_plus_s5 0.53, gb_decay2_800 0.34, todo_attn 0.13
+promedio(est_plus_s5+gb_decay2_800+todo_attn)	73.1	120.3	0.710	0.876	pesos iguales
+gbF_l1	75.8	121.7	0.704	0.868	GB final, pérdida absolute_error (16 s)
+gbF_l2	78.9	120.1	0.711	0.865	GB final, pérdida squared_error (11 s)
+est2	75.2	124.2	0.692	0.871	est_plus + decay fino, 1 semilla (91 s)
+est_h32	75.2	123.4	0.696	0.871	estado 32 (106 s)
+est_e30	75.7	124.1	0.692	0.869	30 épocas (81 s)
+est2_s5	74.3	123.0	0.698	0.872	est_plus + decay fino, 5 semillas (444 s)
+est2_l2_s5	77.2	120.0	0.712	0.870	decay fino, pérdida cuadrática, 5 semillas (416 s)
+mezcla(est_plus_s5+est2_s5+gbF_l1)	73.0	119.8	0.713	0.876	pesos est_plus_s5 0.59, est2_s5 0.05, gbF_l1 0.35
+promedio(est_plus_s5+est2_s5+gbF_l1)	73.0	119.9	0.712	0.876	pesos iguales
+mezcla(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2)	73.0	119.6	0.714	0.876	pesos est_plus_s5 0.61, est2_s5 0.04, est2_l2_s5 0.00, gbF_l1 0.31, gbF_l2 0.04
+promedio(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2)	73.6	117.3	0.725	0.876	pesos iguales
+CAJA gbF_l1	74.1	116.2	0.719	0.871	GB final, pérdida absolute_error (3 s)
+CAJA gbF_l2	75.8	113.1	0.733	0.870	GB final, pérdida squared_error (2 s)
+CAJA est_plus_s5	71.9	113.7	0.731	0.876	 (104 s)
+CAJA est2_s5	71.8	113.3	0.733	0.876	 (104 s)
+CAJA est2_l2_s5	75.6	111.5	0.741	0.873	 (104 s)
+CAJA final: regla al revés	111.8	174.6	0.365	0.733	
+CAJA final: GRU est_plus 5 semillas	71.9	113.7	0.731	0.876	
+CAJA final: GB L1	74.1	116.2	0.719	0.871	
+CAJA final: PRINCIPAL 0,65 GRU + 0,35 GB	71.0	112.0	0.738	0.878	
+CAJA final: ALTERNATIVA promedio de 5	71.5	109.3	0.751	0.878	
+compuerta(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2)	72.8	118.9	0.717	0.877	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+compuerta_corr(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2)	73.0	119.6	0.714	0.876	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+compuerta_gb(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2)	73.0	119.1	0.716	0.876	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+mr_ridge	88.1	132.6	0.648	0.837	MiniRocket 6073 var + ridge. PPV, 6 dilataciones, 12 sesgos (250 s)
+ORÁCULO gb + ocultas totales	72.8	119.2	0.716	0.880	usa la foto 1: techo si se supiera cuántas ocultas hubo
+ORÁCULO gb + victorias/derrotas ocultas	63.7	114.2	0.739	0.909	usa la foto 1: techo si se supiera el resultado de cada oculta (Diamond 52, Master 84)
+lgb_l1	75.5	120.9	0.708	0.869	LightGBM L1, 1000 árboles, 31 hojas, bagging .8 (6 s)
+lgb_huber	76.2	122.5	0.700	0.869	LightGBM Huber δ=60 LP (5 s)
+lgb_l2	77.9	119.1	0.717	0.867	LightGBM L2 (5 s)
+lgb_q25	88.2	142.0	0.597	0.867	LightGBM cuantil .25 (6 s)
+lgb_q75	88.1	136.3	0.628	0.861	LightGBM cuantil .75 (6 s)
+cat_l1	75.0	118.5	0.719	0.871	CatBoost MAE, profundidad 6, 2000 it (37 s)
+mr_ridge_gb	75.4	121.5	0.705	0.869	GB final + ridge MiniRocket como variable (745 s)
+cat_rmse	77.0	117.8	0.723	0.870	CatBoost RMSE (39 s)
+cat_huber	74.9	118.1	0.721	0.872	CatBoost Huber δ=60 (34 s)
+xgb_l1	75.4	120.6	0.709	0.869	XGBoost L1, profundidad 6 (19 s)
+xgb_pseudohuber	75.9	119.5	0.714	0.870	XGBoost pseudo-Huber 60 (7 s)
+lgb_dart	77.0	124.9	0.688	0.866	LightGBM DART L1 (17 s)
+cat_l1_d8	75.4	118.7	0.718	0.870	CatBoost MAE, profundidad 8 (86 s)
+gb_dc_var	75.9	121.6	0.704	0.868	gbF + decay calibrado como variables, base regla (18 s)
+gb_dc_base	76.9	122.8	0.699	0.865	gbF + decay calibrado, base regla + decay calibrado (14 s)
+gb_dc_solo	76.0	121.9	0.703	0.868	gbF sin el decay viejo + calibrado (14 s)
+cat_huber_d5	75.1	119.2	0.716	0.872	CatBoost Huber 60, profundidad 5 (23 s)
+cat_huber_d7	75.1	118.2	0.721	0.872	CatBoost Huber 60, profundidad 7 (49 s)
+cat_huber30	74.8	119.4	0.715	0.872	CatBoost Huber δ=30 (35 s)
+cat_huber100	75.3	117.5	0.724	0.872	CatBoost Huber δ=100 (39 s)
+cat_huber_l2r10	74.9	119.0	0.717	0.872	CatBoost Huber 60, l2 10 (51 s)
+cat_huber_s1	75.0	118.6	0.719	0.872	CatBoost Huber 60, semilla 1 (52 s)
+cat_huber_s2	75.0	118.0	0.721	0.872	CatBoost Huber 60, semilla 2 (50 s)
+cat_q50	75.0	118.5	0.719	0.871	CatBoost cuantil .5 (42 s)
+d_delta	75.8	122.9	0.698	0.869	est_plus + cabeza de deltas (suma por partida) (236 s)
+cat_logcosh	75.1	118.5	0.719	0.871	CatBoost LogCosh (109 s)
+cat_huber+dc	75.0	118.4	0.720	0.872	CatBoost Huber δ=60 + decay calibrado (41 s)
+grid_media	125.3	186.8	0.302	0.709	filtro de grilla, media posterior; τ lobby 0.0, s 5.0, π 0.3/0.7 (89 s)
+grid_mediana	119.2	187.5	0.297	0.729	filtro de grilla, mediana posterior; τ lobby 0.0, s 5.0, π 0.3/0.7 (89 s)
+d_aux03	75.1	124.0	0.693	0.871	est_plus + auxiliar: victorias/derrotas ocultas (λ .3) (161 s)
+cat_huber+grid	74.9	117.7	0.723	0.872	cat_huber + variables del filtro de grilla grid (60 s)
+cat_huber_lento	74.8	118.4	0.720	0.872	CatBoost Huber 60, 5000 it lr .02 (120 s)
+cat_bag5	74.7	118.0	0.722	0.873	CatBoost Huber 60, promedio de 5 semillas (228 s)
+comp_11(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2+cat_huber+cat_rmse+cat_huber100+lgb_l1+xgb_l1+mr_ridge_gb)	72.3	117.5	0.724	0.878	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+mezcla(est_plus_s5+cat_huber)	72.6	118.1	0.721	0.877	pesos est_plus_s5 0.59, cat_huber 0.41
+promedio(est_plus_s5+cat_huber)	72.6	117.6	0.724	0.878	pesos iguales
+mezcla(est_plus_s5+est2_s5+est2_l2_s5+cat_huber+cat_rmse)	72.6	117.9	0.722	0.877	pesos est_plus_s5 0.59, est2_s5 0.00, est2_l2_s5 0.00, cat_huber 0.38, cat_rmse 0.03
+promedio(est_plus_s5+est2_s5+est2_l2_s5+cat_huber+cat_rmse)	73.2	116.3	0.729	0.877	pesos iguales
+d_mdn2	74.6	126.5	0.680	0.870	est_plus + mezcla de 2 Laplace, mediana (368 s)
+cat_huber@z2	75.5	119.7	0.714	0.872	CatBoost Huber δ=60 (base z2) (61 s)
+cat_huber@km	75.1	119.0	0.717	0.872	CatBoost Huber δ=60 (base km) (65 s)
+lgb_l1@z2	75.9	122.3	0.701	0.869	LightGBM L1, 1000 árboles, 31 hojas, bagging .8 (base z2) (28 s)
+grid_l0.1_media	114.3	165.1	0.455	0.739	filtro de grilla, media posterior; τ lobby 0.1, s 5.0, π 0.3/0.7 (610 s)
+grid_l0.1_mediana	109.3	162.9	0.469	0.762	filtro de grilla, mediana posterior; τ lobby 0.1, s 5.0, π 0.3/0.7 (610 s)
+cat_bag5_rsm	74.5	117.7	0.723	0.873	CatBoost Huber 60, 5 semillas, columnas .7 y filas .8 (280 s)
+d_aux1	75.5	124.0	0.693	0.870	est_plus + auxiliar ocultas (λ 1) (311 s)
+cat_huber+grid_l0.1	74.7	117.7	0.723	0.873	cat_huber + variables del filtro de grilla grid_l0.1 (68 s)
+regla_lineal	95.2	146.4	0.572	0.818	regla aprendida lineal L1, 30 sumas por jugador (226 s)
+cat_bag5_h100	75.0	117.1	0.726	0.873	CatBoost Huber 100, 5 semillas (245 s)
+comp_15(est_plus_s5+est2_s5+est2_l2_s5+d_mdn2+d_aux03+gbF_l1+gbF_l2+cat_bag5+cat_rmse+cat_huber100+cat_huber+grid_l0.1+lgb_l1+xgb_l1+mr_ridge_gb+regla_lineal)	72.2	118.7	0.718	0.878	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+comp_11h(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2+cat_huber+cat_rmse+cat_huber100+lgb_l1+xgb_l1+mr_ridge_gb)	72.5	116.8	0.727	0.879	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+d_mdn3	75.4	128.2	0.671	0.867	est_plus + mezcla de 3 Laplace, mediana (314 s)
+cat_huber+em_anid_cat_huber_rel	74.3	119.0	0.717	0.873	cat_huber con lobbies recalculados con anid_cat_huber (EM, 1 vuelta) (124 s)
+especialistas (piso+inactivo, inactivo>14, <=5 partidas)	-	-	-	-	CatBoost solo con el subgrupo: peor que el global en los tres (piso 110,6 vs 105,6; inactivo 72,1 vs 70,3; pocas 57,6 vs 56,0)
+grid_l0.5_media	111.7	166.7	0.444	0.760	filtro de grilla, media posterior; τ lobby 0.5, s 5.0, π 0.3/0.7 (487 s)
+grid_l0.5_mediana	107.8	162.8	0.470	0.780	filtro de grilla, mediana posterior; τ lobby 0.5, s 5.0, π 0.3/0.7 (487 s)
+cat_huber+grid_l0.5	74.4	117.1	0.726	0.874	cat_huber + variables del filtro de grilla grid_l0.5 (88 s)
+d_delta_aux	77.8	123.7	0.694	0.864	deltas + auxiliar (339 s)
+cat_bag5_rsm+grid_l0.1	74.3	117.1	0.726	0.873	cat_bag5_rsm + variables del filtro de grilla grid_l0.1 (363 s)
+comp_10(est_plus_s5+est2_s5+est2_l2_s5+gbF_l1+gbF_l2+cat_bag5_rsm+cat_rmse+cat_huber100+lgb_l1+xgb_l1)	72.3	117.8	0.722	0.878	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+cat_huber+em_anid_cat_huber	74.7	118.2	0.720	0.872	cat_huber con lobbies recalculados con anid_cat_huber (EM, 1 vuelta) (131 s)
+cat_huber+an_cat_huber	74.7	119.1	0.716	0.871	CatBoost Huber δ=60 + predicción anidada de cat_huber (42 s)
+g_cat	74.4	120.4	0.710	0.874	est_plus + predicción anidada de CatBoost Huber como estática (325 s)
+cat_bag5_rsm+grid_l0.5	73.9	116.5	0.729	0.875	cat_bag5_rsm + variables del filtro de grilla grid_l0.5 (281 s)
+g_cat	74.4	120.4	0.710	0.874	est_plus + predicción anidada de CatBoost Huber como estática (363 s)
+comp_12(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_huber+grid_l0.5+cat_rmse+cat_huber100+lgb_l1+xgb_l1)	71.9	116.2	0.730	0.879	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+comp_12h(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_huber+grid_l0.5+cat_rmse+cat_huber100+lgb_l1+xgb_l1)	72.0	115.6	0.733	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+cat_rmse+grid_l0.5	76.2	116.1	0.731	0.872	cat_rmse + variables del filtro de grilla grid_l0.5 (55 s)
+cat_huber100+grid_l0.5	74.6	116.1	0.731	0.874	cat_huber100 + variables del filtro de grilla grid_l0.5 (57 s)
+lgb_l1+grid_l0.5	75.0	120.6	0.709	0.871	lgb_l1 + variables del filtro de grilla grid_l0.5 (13 s)
+xgb_l1+grid_l0.5	74.9	119.8	0.713	0.871	xgb_l1 + variables del filtro de grilla grid_l0.5 (29 s)
+lgb_q25+grid_l0.5	87.2	140.4	0.606	0.869	lgb_q25 + variables del filtro de grilla grid_l0.5 (13 s)
+lgb_q75+grid_l0.5	87.6	137.1	0.624	0.864	lgb_q75 + variables del filtro de grilla grid_l0.5 (13 s)
+cat_bag5_h100+grid_l0.5	74.2	115.5	0.733	0.875	cat_bag5_h100 + variables del filtro de grilla grid_l0.5 (288 s)
+g_aug10	76.7	125.2	0.687	0.868	est_plus + aumento: borra 10 % de las partidas observadas en la mitad de los lotes (728 s)
+g_aug10	76.7	125.2	0.687	0.868	est_plus + aumento: borra 10 % de las partidas observadas en la mitad de los lotes (758 s)
+grid_l1.0_media	114.3	176.7	0.376	0.765	filtro de grilla, media posterior; τ lobby 1.0, s 5.0, π 0.3/0.7 (1158 s)
+grid_l1.0_mediana	110.3	170.9	0.416	0.782	filtro de grilla, mediana posterior; τ lobby 1.0, s 5.0, π 0.3/0.7 (1158 s)
+comp_13(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_bag5_h100+grid_l0.5+cat_huber100+grid_l0.5+cat_rmse+grid_l0.5+xgb_l1+grid_l0.5+lgb_l1+grid_l0.5)	71.9	115.9	0.732	0.879	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+cat_huber+grid_l1.0	74.3	117.4	0.724	0.874	cat_huber + variables del filtro de grilla grid_l1.0 (61 s)
+comp_13h(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_bag5_h100+grid_l0.5+cat_huber100+grid_l0.5+cat_rmse+grid_l0.5+xgb_l1+grid_l0.5+lgb_l1+grid_l0.5)	72.1	115.6	0.733	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+comp_13g(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_bag5_h100+grid_l0.5+cat_huber100+grid_l0.5+cat_rmse+grid_l0.5+xgb_l1+grid_l0.5+lgb_l1+grid_l0.5)	71.9	116.2	0.730	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+g_aug25	77.4	125.7	0.684	0.867	est_plus + aumento 25 % (518 s)
+cat_huber+grid_l0.5,grid	74.3	117.0	0.726	0.873	cat_huber + variables del filtro de grilla grid_l0.5,grid (79 s)
+cat_huber+grid_l0.5,grid_l1.0	74.3	117.2	0.725	0.874	cat_huber + variables del filtro de grilla grid_l0.5,grid_l1.0 (81 s)
+cat_huber+an_gru	73.2	118.1	0.721	0.877	CatBoost Huber δ=60 + predicción anidada de gru (67 s)
+grid2d_media	134.4	212.1	0.100	0.749	filtro de grilla, media posterior; τ lobby 1.0, s 5.0, π 0.3/0.7 (2158 s)
+grid2d_mediana	130.1	208.0	0.135	0.757	filtro de grilla, mediana posterior; τ lobby 1.0, s 5.0, π 0.3/0.7 (2158 s)
+cat_huber+an_gru+grid_l0.5_dev	73.0	117.6	0.724	0.877	cat_huber+an_gru + variables del filtro de grilla grid_l0.5_dev (78 s)
+cat_huber+grid2d	74.8	117.8	0.722	0.873	cat_huber + variables del filtro de grilla grid2d (75 s)
+cat_bag5_rsm+an_gru+grid_l0.5_dev	72.7	117.1	0.726	0.878	cat_bag5_rsm+an_gru + variables del filtro de grilla grid_l0.5_dev (294 s)
+grid_l2.0_media	119.1	188.8	0.287	0.767	filtro de grilla, media posterior; τ lobby 2.0, s 5.0, π 0.3/0.7 (1977 s)
+grid_l2.0_mediana	114.9	181.5	0.341	0.782	filtro de grilla, mediana posterior; τ lobby 2.0, s 5.0, π 0.3/0.7 (1977 s)
+g_aug25	77.4	125.7	0.684	0.867	est_plus + aumento 25 % (606 s)
+cat_huber+grid_l2.0	74.0	116.9	0.727	0.876	cat_huber + variables del filtro de grilla grid_l2.0 (71 s)
+cat_bag5_h100+an_gru+grid_l0.5_dev	72.9	116.3	0.730	0.878	cat_bag5_h100+an_gru + variables del filtro de grilla grid_l0.5_dev (310 s)
+comp_15s(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_bag5_h100+grid_l0.5+cat_huber100+grid_l0.5+cat_rmse+grid_l0.5+xgb_l1+grid_l0.5+lgb_l1+grid_l0.5+cat_bag5_rsm+an_gru+grid_l0.5_dev+cat_bag5_h100+an_gru+grid_l0.5_dev+cat_huber+an_gru+grid_l0.5_dev)	71.7	116.2	0.730	0.879	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+comp_15s--huber(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l0.5+cat_bag5_h100+grid_l0.5+cat_huber100+grid_l0.5+cat_rmse+grid_l0.5+xgb_l1+grid_l0.5+lgb_l1+grid_l0.5+cat_bag5_rsm+an_gru+grid_l0.5_dev+cat_bag5_h100+an_gru+grid_l0.5_dev+cat_huber+an_gru+grid_l0.5_dev)	72.0	115.7	0.732	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+g_grid05	75.4	123.7	0.694	0.869	est_plus + variables del filtro de grilla τ .5 como estáticas (473 s)
+gb_suma	1565.7	79198.4	-125426.461	0.831	LightGBM con objetivo agregado (delta por partida + sesgo por jugador, pseudo-Huber), 600 rondas (237 s)
+cat_bag5_rsm+an_gru+grid_l2.0	72.6	117.4	0.724	0.878	cat_bag5_rsm+an_gru + variables del filtro de grilla grid_l2.0 (542 s)
+gb_media	117.4	763.7	-10.664	0.842	LightGBM con objetivo agregado (delta por partida + sesgo por jugador, pseudo-Huber), 600 rondas (195 s)
+g_cat_grid	74.1	119.1	0.716	0.873	est_plus + CatBoost anidado + grilla τ .5 como estáticas (506 s)
+cat_bag5_h100+an_gru+grid_l2.0	73.0	116.7	0.728	0.878	cat_bag5_h100+an_gru + variables del filtro de grilla grid_l2.0 (284 s)
+gb_suma / gb_media	-	-	-	-	LightGBM con objetivo agregado (gradiente propio sobre la suma o el promedio por jugador): diverge (MAE 1566 / 117, RMSE 79198 / 764)
+cat_bag5_rsm+grid_l2.0	73.5	116.5	0.729	0.876	cat_bag5_rsm + variables del filtro de grilla grid_l2.0 (352 s)
+g_huber	75.2	122.5	0.700	0.871	est_plus con pérdida Huber (δ = 100 LP) (443 s)
+cat_bag5_h100+grid_l2.0	73.9	115.6	0.733	0.876	cat_bag5_h100 + variables del filtro de grilla grid_l2.0 (332 s)
+cat_rmse+grid_l2.0	75.9	116.3	0.730	0.873	cat_rmse + variables del filtro de grilla grid_l2.0 (79 s)
+cat_huber100+grid_l2.0	74.1	115.8	0.732	0.875	cat_huber100 + variables del filtro de grilla grid_l2.0 (76 s)
+xgb_l1+grid_l2.0	74.3	119.8	0.713	0.873	xgb_l1 + variables del filtro de grilla grid_l2.0 (49 s)
+lgb_l1+grid_l2.0	74.5	120.2	0.711	0.873	lgb_l1 + variables del filtro de grilla grid_l2.0 (23 s)
+lgb_q25+grid_l2.0	86.6	139.9	0.608	0.871	lgb_q25 + variables del filtro de grilla grid_l2.0 (20 s)
+lgb_q75+grid_l2.0	87.0	135.6	0.632	0.865	lgb_q75 + variables del filtro de grilla grid_l2.0 (16 s)
+comp_t2(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l2.0+cat_bag5_h100+grid_l2.0+cat_huber100+grid_l2.0+cat_rmse+grid_l2.0+xgb_l1+grid_l2.0+lgb_l1+grid_l2.0+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+an_gru+grid_l2.0)	71.8	116.8	0.727	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+comp_t2--huber(est_plus_s5+est2_s5+est2_l2_s5+g_cat+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l2.0+cat_bag5_h100+grid_l2.0+cat_huber100+grid_l2.0+cat_rmse+grid_l2.0+xgb_l1+grid_l2.0+lgb_l1+grid_l2.0+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+an_gru+grid_l2.0)	72.0	116.2	0.730	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+mezcla(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0)	71.9	116.3	0.729	0.880	pesos est_plus_s5 0.28, g_cat 0.14, cat_bag5_rsm+an_gru+grid_l2.0 0.39, cat_bag5_h100+grid_l2.0 0.19
+promedio(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0)	71.9	116.1	0.731	0.880	pesos iguales
+mezcla(est_plus_s5+cat_bag5_rsm+grid_l2.0)	72.2	116.9	0.727	0.879	pesos est_plus_s5 0.48, cat_bag5_rsm+grid_l2.0 0.52
+promedio(est_plus_s5+cat_bag5_rsm+grid_l2.0)	72.2	117.0	0.726	0.879	pesos iguales
+cat_huber+an_gru	73.2	118.1	0.721	0.877	CatBoost Huber δ=60 + predicción anidada de gru (43 s)
+tabpfn_media	75.5	119.9	0.713	0.873	TabPFN v2, 8000 filas de contexto, 4 estimadores, media (3126 s)
+tabpfn_mediana	73.8	121.6	0.704	0.872	TabPFN v2, 8000 filas de contexto, 4 estimadores, mediana (3126 s)
+mezcla(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_mediana)	71.6	116.3	0.730	0.880	pesos est_plus_s5 0.19, g_cat 0.11, cat_bag5_rsm+an_gru+grid_l2.0 0.35, cat_bag5_h100+grid_l2.0 0.05, tabpfn_mediana 0.30
+promedio(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_mediana)	71.6	115.7	0.732	0.880	pesos iguales
+mezcla(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_media)	71.9	116.1	0.730	0.880	pesos est_plus_s5 0.24, g_cat 0.14, cat_bag5_rsm+an_gru+grid_l2.0 0.41, cat_bag5_h100+grid_l2.0 0.10, tabpfn_media 0.11
+promedio(est_plus_s5+g_cat+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_media)	72.0	115.4	0.734	0.880	pesos iguales
+g_cg2_s5	73.2	118.7	0.718	0.876	est_plus + CatBoost anidado + grilla τ 2, 5 semillas (1584 s)
+mezcla(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_mediana)	71.5	116.2	0.730	0.880	pesos est_plus_s5 0.14, g_cg2_s5 0.24, cat_bag5_rsm+an_gru+grid_l2.0 0.32, cat_bag5_h100+grid_l2.0 0.00, tabpfn_mediana 0.31
+cat_bag5+an_gru	72.9	117.7	0.723	0.877	CatBoost Huber 60, promedio de 5 semillas + predicción anidada de gru (218 s)
+promedio(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_mediana)	71.5	115.6	0.733	0.880	pesos iguales
+mezcla(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0)	71.8	116.2	0.730	0.880	pesos est_plus_s5 0.21, g_cg2_s5 0.26, cat_bag5_rsm+an_gru+grid_l2.0 0.39, cat_bag5_h100+grid_l2.0 0.15
+promedio(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0)	71.8	115.9	0.732	0.880	pesos iguales
+comp_t3(est_plus_s5+est2_s5+est2_l2_s5+g_cat+g_cg2_s5+gbF_l1+gbF_l2+cat_bag5_rsm+grid_l2.0+cat_bag5_h100+grid_l2.0+cat_huber100+grid_l2.0+cat_rmse+grid_l2.0+xgb_l1+grid_l2.0+lgb_l1+grid_l2.0+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+an_gru+grid_l2.0+tabpfn_mediana+tabpfn_media)	71.4	116.5	0.728	0.880	contexto: obs, rango, días, piso, decay, kal_sd, dispersión
+et+grid_l2.0	82.9	128.1	0.672	0.853	et + variables del filtro de grilla grid_l2.0 (11 s)
+rf+grid_l2.0	79.4	123.0	0.697	0.863	rf + variables del filtro de grilla grid_l2.0 (43 s)
+tabpfn_g2_media	74.9	119.7	0.713	0.876	TabPFN v2, 8000 filas de contexto, 4 estimadores, media (1679 s)
+tabpfn_g2_mediana	73.1	121.2	0.706	0.875	TabPFN v2, 8000 filas de contexto, 4 estimadores, mediana (1679 s)
+mezcla(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_g2_mediana)	71.4	116.4	0.729	0.880	pesos est_plus_s5 0.13, g_cg2_s5 0.20, cat_bag5_rsm+an_gru+grid_l2.0 0.30, cat_bag5_h100+grid_l2.0 0.00, tabpfn_g2_mediana 0.36
+promedio(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_g2_mediana)	71.5	115.6	0.733	0.880	pesos iguales
+CAJA2 regla al revés	111.8	174.6	0.365	0.733	segunda apertura de la caja, candidatos fijados antes
+CAJA2 anterior: 0,65 GRU + 0,35 GB	71.0	112.0	0.738	0.878	segunda apertura de la caja, candidatos fijados antes
+CAJA2 PRINCIPAL: promedio de est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_g2_mediana	69.5	107.6	0.759	0.882	segunda apertura de la caja, candidatos fijados antes
+CAJA2 ALTERNATIVA: comp_t3	69.2	108.9	0.753	0.883	segunda apertura de la caja, candidatos fijados antes
+tabpfn_g2_grande_media	74.5	118.7	0.718	0.877	TabPFN v2, 12000 filas de contexto, 8 estimadores, media (5388 s)
+tabpfn_g2_grande_mediana	72.5	120.4	0.710	0.877	TabPFN v2, 12000 filas de contexto, 8 estimadores, mediana (5388 s)
+mezcla(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_g2_grande_mediana)	71.2	116.5	0.729	0.880	pesos est_plus_s5 0.13, g_cg2_s5 0.20, cat_bag5_rsm+an_gru+grid_l2.0 0.25, cat_bag5_h100+grid_l2.0 0.00, tabpfn_g2_grande_mediana 0.42
+promedio(est_plus_s5+g_cg2_s5+cat_bag5_rsm+an_gru+grid_l2.0+cat_bag5_h100+grid_l2.0+tabpfn_g2_grande_mediana)	71.4	115.6	0.733	0.880	pesos iguales
+grid_l4.0_media	125.8	204.9	0.161	0.764	filtro de grilla, media posterior; τ lobby 4.0, s 5.0, π 0.3/0.7 (310 s)
+grid_l4.0_mediana	121.1	195.9	0.233	0.777	filtro de grilla, mediana posterior; τ lobby 4.0, s 5.0, π 0.3/0.7 (310 s)
+cat_huber+grid_l4.0	73.6	117.2	0.725	0.876	cat_huber + variables del filtro de grilla grid_l4.0 (35 s)
+CAJA gru_base	73.2	114.7	0.726	0.874	GRU completa de referencia, 1 semilla (21 s)
+grid_l2.0_wr200_media	118.9	188.5	0.290	0.768	filtro de grilla, media posterior; τ lobby 2.0, s 5.0, π 0.3/0.7 (307 s)
+grid_l2.0_wr200_mediana	114.6	181.0	0.345	0.783	filtro de grilla, mediana posterior; τ lobby 2.0, s 5.0, π 0.3/0.7 (307 s)
+cat_huber+grid_l2.0_wr200	73.9	117.1	0.726	0.876	cat_huber + variables del filtro de grilla grid_l2.0_wr200 (36 s)
+cat_huber+grid_l2.0,grid_l2.0_wr200	74.0	117.1	0.726	0.876	cat_huber + variables del filtro de grilla grid_l2.0,grid_l2.0_wr200 (42 s)
+grid_l0_media	125.3	186.8	0.302	0.709	filtro de grilla, media posterior; τ lobby 0.0, s 5.0, π 0.3/0.7 (59 s)
+grid_l0_mediana	119.2	187.5	0.297	0.729	filtro de grilla, mediana posterior; τ lobby 0.0, s 5.0, π 0.3/0.7 (59 s)

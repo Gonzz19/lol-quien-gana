@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# Núcleo: recolección desde la API de Riot y persistencia (collect_data.py)
+# ---------------------------------------------------------------------------
+requests>=2.31.0          # cliente HTTP contra Riot API (League-V4, Match-V5)
+python-dotenv>=1.0.0      # carga del pool de API keys desde .env
+tqdm>=4.66.0              # barras de progreso del crawler
+
+# ---------------------------------------------------------------------------
+# Exportación de datasets y feature engineering (export_to_csv.py, src/features)
+# ---------------------------------------------------------------------------
+pandas>=2.0.0
+numpy>=1.24.0
+
+# ---------------------------------------------------------------------------
+# Monitor de telemetría en vivo (scripts/ops/monitor_live.py)
+# ---------------------------------------------------------------------------
+rich>=13.0.0
+
+# ---------------------------------------------------------------------------
+# Análisis exploratorio y modelado (notebooks/)
+# ---------------------------------------------------------------------------
+jupyter>=1.0.0
+matplotlib>=3.7.0
+seaborn>=0.13.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+torch>=2.2.0              # redes (GPU opcional): modelo en vivo (ingame_*, src/models/ingame.py), elo_gru, huella_*, embeddings_partidas, brainstorm_g_*
+ngboost>=0.5.0            # NGBoost del elo al revés: elo_boostings.py, build_lp_partida.py (notebooks/eda_entre_fotos.ipynb)
+lightgbm>=4.0.0           # modelo en vivo (ingame_preparar.py, ingame_evaluar.py) y LP por partida (src/features/lp_partida.py)
+catboost>=1.2.0           # ingame_evaluar.py y brainstorm_g_08/13/22/28 de scripts/analysis/
+xgboost>=2.0.0            # solo historial/ (ganador_primeros/ganador_modelos.py, elo_principal_oct/zoo.py): opcional
+pyarrow>=15.0.0           # parquet del matchmaking (matchmaking_*.py) y la sección 7 de eda_modelos_ganador
+umap-learn>=0.5.5         # umap_vistas.py (§9.S.58)
+hdbscan>=0.8.33           # umap_vistas.py: usa prediction_data/approximate_predict, que el HDBSCAN de sklearn no tiene
+
+# ---------------------------------------------------------------------------
+# Testing
+# ---------------------------------------------------------------------------
+pytest>=7.4.0
+truststore>=0.10  # opcional: certificados de Windows para requests (lolpros_historial.py)

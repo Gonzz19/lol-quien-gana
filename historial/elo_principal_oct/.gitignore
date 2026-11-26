@@ -1,0 +1,6 @@
+*.pkl
+*.npy
+*.pyc
+preds/
+catboost_info/
+__pycache__/

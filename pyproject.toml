@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+# Restringe la colección a tests/: evita que pytest levante herramientas
+# interactivas de diagnóstico (tools/) como si fueran tests automatizados.
+testpaths = ["tests"]
+python_files = ["test_*.py"]

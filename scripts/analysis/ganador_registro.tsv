@@ -1,0 +1,77 @@
+fecha	seccion	familia	experimento	referencia	conjunto	auc	delta	ic_lo	ic_hi	decision
+2026-10-20	R	Baseline	Regla: media del winrate campeón-línea (con leakage)	constante (0.500)	todo el dataset (descriptivo)	0.5718	0.0718			descartada
+2026-10-26	S.13	Baseline	Regla: media del winrate campeón-línea (sin leakage)	constante (0.500)	test (antes de fijar la regla de no tocarlo)	0.5416	0.0416			descartada
+2026-10-26	S.20	Draft	Logística del draft (campeón × línea; antisimétrica)	constante (0.500)	test (antes de fijar la regla de no tocarlo)	0.543	0.043			descartada
+2026-10-26	S.20	Draft	Logística del draft con lados separados	logística del draft (0.543)	test (antes de fijar la regla de no tocarlo)	0.540	-0.003			descartada
+2026-10-27	S.21	Rating	Rating TrueSkill sin fuga (LP exacto de arranque)	constante (0.500)	train entre fotos	0.513	0.013			descartada
+2026-11-02	S.23	Componentes	Solo campeones (one-hot con signo)	tasa base (0.500)	V	0.542	0.042			entra
+2026-11-02	S.23	Componentes	Solo LP (foto 1 + regla)	tasa base (0.500)	V	0.529	0.029			descartada
+2026-11-02	S.23	Componentes	Solo huella de estilo	tasa base (0.500)	V	0.556	0.056			entra
+2026-11-02	S.23	Componentes	Solo experiencia con el campeón	tasa base (0.500)	V	0.579	0.079			entra
+2026-11-02	S.23	Componentes	Campeones + LP + huella	tasa base (0.500)	V	0.575	0.075			descartada
+2026-11-02	S.23	Componentes	Base: campeones + LP + huella + experiencia	tasa base (0.500)	V	0.610	0.110			entra
+2026-11-02	S.23	Componentes	+ cobertura; dificultad; matchups y sinergias	base (0.610)	V	0.612	0.002			descartada
+2026-11-03	S.23	Huella	Huella progresiva (+ n partidas; todo el train)	huella congelada (0.610)	V	0.634	0.025	0.020	0.030	entra
+2026-11-03	S.23	Huella	Sin huella (todo el train)	huella congelada (0.610)	V	0.597	-0.013	-0.018	-0.008	descartada
+2026-11-03	S.23	Arquitectura	MLP 64 sobre la huella progresiva	logística (0.634)	V	0.632	-0.003	-0.004	-0.002	descartada
+2026-11-03	S.23	Arquitectura	MLP 1024-512-256 sobre la huella progresiva	logística (0.634)	V	0.630	-0.005	-0.006	-0.003	descartada
+2026-11-03	S.23	Representación	Los dos equipos por separado	logística azul − rojo (0.634)	V	0.633	-0.002	-0.003	-0.000	descartada
+2026-11-03	S.23	Representación	Campeón × línea	logística azul − rojo (0.634)	V	0.634	-0.000	-0.002	0.002	descartada
+2026-11-03	S.23	Arquitectura	MLP con los equipos concatenados	logística azul − rojo (0.634)	V	0.629	-0.005	-0.008	-0.003	descartada
+2026-11-03	S.23	Arquitectura	Codificador compartido por jugador 256-64	logística azul − rojo (0.634)	V	0.635	0.001	-0.002	0.004	descartada
+2026-11-03	S.23	Ensamble	Promedio logística + codificador compartido	logística azul − rojo (0.634)	V	0.637	0.003	0.002	0.004	descartada
+2026-11-03	S.23	Huella	Habilidad + estilo (5 números por jugador)	huella completa (0.634)	V	0.635	0.000	-0.001	0.001	descartada
+2026-11-03	S.23	Huella	+ matchup de estilos por línea	huella completa (0.634)	V	0.634	-0.000	-0.001	0.001	descartada
+2026-11-03	S.23	Arquitectura	Red por jugador con habilidad + estilo	huella completa (0.634)	V	0.633	-0.002	-0.003	0.000	descartada
+2026-11-12	S.23	Arquitectura	Red con codificador compartido ('equipo'; config A)	logística (0.610)	V	0.606	-0.004	-0.008	-0.001	descartada
+2026-11-12	S.23	Arquitectura	LightGBM (todo V)	logística (0.610)	V	0.600	-0.010	-0.014	-0.006	descartada
+2026-11-12	S.24	Margen	Margen previo + winrate previo (config C)	base sin huella (0.597)	V	0.636	0.039	0.034	0.044	entra
+2026-11-12	S.24	Duos y sesión	Duos (≥ 3 partidas juntos)	margen (0.636)	V	0.637	0.001			entra
+2026-11-12	S.25	Arquitectura	LightGBM espejado con el margen	logística con margen (0.636)	V	0.631	-0.005	-0.008	-0.003	descartada
+2026-11-12	S.25	Arquitectura	CatBoost espejado con el margen	logística con margen (0.636)	V	0.630	-0.006	-0.009	-0.004	descartada
+2026-11-12	S.25	Arquitectura	Red por jugador 'escalar' con el margen	logística con margen (0.636)	V	0.638	0.002	-0.001	0.004	descartada
+2026-11-12	S.25	Arquitectura	Red por jugador 'equipo' con el margen	logística con margen (0.636)	V	0.640	0.004	0.001	0.006	entra
+2026-11-12	S.25	Poisson	Ataque/defensa de Poisson (sin margen)	base sin huella (0.597)	V	0.610	0.013	0.011	0.016	entra
+2026-11-12	S.25	Poisson	Poisson sumado al margen	margen y duos (0.636)	V	0.639	0.0024	0.0016	0.0033	entra
+2026-11-12	S.26	Poisson	Red con Poisson − red sin Poisson	red 'equipo' (0.6397)	V	0.6416	0.0019	0.0002	0.0034	entra
+2026-11-12	S.26	Ensamble	Stacking fuera de muestra de 4 expertos	mejor experto solo (0.6416)	V	0.6428	0.0012	0.0002	0.0023	entra
+2026-11-12	S.26	Ensamble	Promedio simple de los 4 logits	mejor experto solo (0.6416)	V	0.6414	-0.0002			descartada
+2026-11-12	S.28	Parche	Fuerza del campeón en el parche	base con margen (0.6362)	V	0.6364	0.0001	-0.0000	0.0004	descartada
+2026-11-12	S.28	Parche	Fuerza reciente del campeón (con olvido)	base con margen (0.6362)	V	0.6366	0.0003	0.0000	0.0006	descartada
+2026-11-12	S.28	Parche	Popularidad del campeón en el parche	base con margen (0.6362)	V	0.6372	0.0009	0.0002	0.0015	descartada
+2026-11-12	S.28	Parche	Las tres de parche/reciente/popularidad	base con margen (0.6362)	V	0.6375	0.0012	0.0005	0.0019	descartada
+2026-11-12	S.29	Duos y sesión	Duos reales (≥ 5 juntos; 0 enfrentados)	base con margen (0.6362)	V		0.0006			descartada
+2026-11-12	S.29	Margen	Margen por (jugador; campeón)	base con margen (0.6362)	V	0.6432	0.0069	0.0045	0.0093	entra
+2026-11-12	S.29	Margen	Margen por (jugador; línea)	base con margen (0.6362)	V	0.6395	0.0033	0.0015	0.0051	entra
+2026-11-12	S.29	Margen	Forma muy reciente (últimas 5)	base con margen (0.6362)	V	0.6370	0.0008	-0.0001	0.0016	descartada
+2026-11-13	S.30	Cambio reciente	Cambio de pool	base 0.6446	V	0.6446	0.0000	-0.0005	0.0005	descartada
+2026-11-13	S.30	Cambio reciente	Resultados recientes (OTP y gana)	base 0.6446	V	0.6447	0.0001	-0.0001	0.0004	descartada
+2026-11-13	S.30	Cambio reciente	Cambio de huella	base 0.6446	V	0.6447	0.0001	-0.0002	0.0005	descartada
+2026-11-13	S.30	Cambio reciente	Cambio de horario	base 0.6446	V	0.6448	0.0002	-0.0001	0.0005	descartada
+2026-11-13	S.30	Cambio reciente	Ritmo de juego	base 0.6446	V	0.6459	0.0013	0.0007	0.0020	candidato
+2026-11-13	S.30	Cambio reciente	Encaje del equipo (oro y daño habituales)	base 0.6446	V	0.6448	0.0003	-0.0002	0.0007	descartada
+2026-11-13	S.31	Lobby	Nivel del lobby (LP de la foto)	base 0.6446	V	0.6474	0.0028	0.0019	0.0038	entra
+2026-11-13	S.31	Lobby	Nivel del lobby (rating TrueSkill)	base 0.6446	V	0.6461	0.0015	0.0005	0.0027	descartada
+2026-11-13	S.31	Lobby	Margen ajustado por el rival	base 0.6446	V	0.6453	0.0007	0.0000	0.0014	descartada
+2026-11-13	S.32	Ensamble	Stacking de 7 expertos (+ lobby)	stacking de 6 (0.6489)	V	0.6513	0.0023	0.0015	0.0032	descartada
+2026-11-13	S.32	Ensamble	Red de grupos + logística lobby (2 expertos)	stacking de 6 (0.6489)	V	0.6491	0.0001	-0.0004	0.0007	descartada
+2026-11-13	S.33	Ensamble	Sacar la red de grupos del stacking de 8	stacking de 8 (0.6513)	V		-0.0009	-0.0020	0.0002	descartada
+2026-11-13	S.35	Arranque y rasgos	Margen con valor de arranque según el nivel	base 0.6474	V		0.0010	-0.0001	0.0022	descartada
+2026-11-13	S.35	Arranque y rasgos	Rasgos condicionales (snowball; remontada)	base 0.6474	V		0.0006			descartada
+2026-11-13	S.36	Línea	Modelo por línea (oro a los 15 predicho)	modelo de 2 (0.6496)	V	0.6508	0.0012	0.0008	0.0018	entra
+2026-11-13	S.36	Arquitectura	Red con interacción entre rivales de línea	modelo de 2 (0.6510)	V	0.6507	-0.0002	-0.0010	0.0007	descartada
+2026-11-13	S.36	Lobby	Red de grupos con nivel del lobby	modelo de 2 (0.6508)	V	0.6500	-0.0008	-0.0015	-0.0001	descartada
+2026-11-14	S.37	Composición	Composición del draft (externos)	modelo de 2 (0.6508)	V	0.6517	0.0009	0.0004	0.0014	entra
+2026-11-14	S.37	Composición	Composición también en la red de grupos	modelo de 2 (0.6517)	V	0.6519	0.0002	-0.0010	0.0013	descartada
+2026-11-14	S.37	Runas y cuenta	Nivel de cuenta (muestra de 10.000)	modelo de 2 en la muestra (0.6501)	V (muestra de 10.000)	0.6502	0.0001	-0.0006	0.0008	descartada
+2026-11-14	S.37	Runas y cuenta	Hechizos de invocador (muestra)	modelo de 2 en la muestra (0.6501)	V (muestra de 10.000)	0.6501	0.0000	-0.0023	0.0022	descartada
+2026-11-14	S.37	Runas y cuenta	Rareza de runa clave y hechizos (muestra)	modelo de 2 en la muestra (0.6501)	V (muestra de 10.000)	0.6519	0.0017	-0.0009	0.0043	candidato
+2026-11-14	S.38	Historial	Oráculo: margen con todo el historial (futuro incluido)	margen previo (0.5913)	V	0.5922	0.0009	-0.0035	0.0047	descartada
+2026-11-14	S.39	Destilación	Alumno logístico con etiqueta suave (a = 0.5)	logística (0.6346)	V	0.6346	0.0000			descartada
+2026-11-14	S.39	Destilación	Alumno LightGBM con etiqueta suave (a = 0.25)	LightGBM (0.6274)	V	0.6303	0.0029			descartada
+2026-11-14	S.39	Agregados	Máximo dentro del equipo	logística liviana	V		0.0011			candidato
+2026-11-14	S.41	Embeddings	Embedding AE del historial (16 dims)	logística de 85 variables (0.6397)	V	0.6407	0.0011	0.0004	0.0017	candidato
+2026-11-14	S.41	Embeddings	Embedding AE con todas las variables	logística de 85 variables (0.6397)	V	0.6396	-0.0001	-0.0005	0.0003	descartada
+2026-11-14	S.41	Embeddings	Embedding AE solo del campeón	logística de 85 variables (0.6397)	V	0.6400	0.0003	-0.0001	0.0007	descartada
+2026-11-14	S.41	Embeddings	Cruce de tipos de equipo (K-Means; k = 6)	logística de 85 variables (0.6397)	V	0.6396	-0.0001	-0.0004	0.0001	descartada
+2026-11-14	S.41	Embeddings	Pertenencias fuzzy C-means	logística de 85 variables (0.6397)	V	0.6397	0.0000	-0.0000	0.0001	descartada

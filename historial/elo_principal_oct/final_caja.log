@@ -1,0 +1,10 @@
+cat_bag5_rsm+grid_l2.0: caja lista
+cat_bag5_h100+grid_l2.0: caja lista
+cat_rmse+grid_l2.0: caja lista
+cat_huber100+grid_l2.0: caja lista
+xgb_l1+grid_l2.0: caja lista
+lgb_l1+grid_l2.0: caja lista
+lgb_q25+grid_l2.0: caja lista
+lgb_q75+grid_l2.0: caja lista
+cat_bag5_rsm+an_gru+grid_l2.0: caja lista
+cat_bag5_h100+an_gru+grid_l2.0: caja lista

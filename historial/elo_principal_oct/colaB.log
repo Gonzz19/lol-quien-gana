@@ -1,0 +1,16 @@
+grid_l1.0_mediana                             MAE  110.3 | RMSE  170.9 | R2 0.416 | rho 0.782 filtro de grilla, mediana posterior; τ lobby 1.0, s 5.0, π 0.3/0.7 (1158 s)
+cat_huber+grid_l1.0                           MAE   74.3 | RMSE  117.4 | R2 0.724 | rho 0.874 cat_huber + variables del filtro de grilla grid_l1.0 (61 s)
+grid_l2.0_mediana                             MAE  114.9 | RMSE  181.5 | R2 0.341 | rho 0.782 filtro de grilla, mediana posterior; τ lobby 2.0, s 5.0, π 0.3/0.7 (1977 s)
+cat_huber+grid_l2.0                           MAE   74.0 | RMSE  116.9 | R2 0.727 | rho 0.876 cat_huber + variables del filtro de grilla grid_l2.0 (71 s)
+fold 4 (3126 s)
+tabpfn_media                                  MAE   75.5 | RMSE  119.9 | R2 0.713 | rho 0.873 TabPFN v2, 8000 filas de contexto, 4 estimadores, media (3126 s)
+tabpfn_mediana                                MAE   73.8 | RMSE  121.6 | R2 0.704 | rho 0.872 TabPFN v2, 8000 filas de contexto, 4 estimadores, mediana (3126 s)
+lobby: {0: (np.float64(756.69), np.float64(0.38), np.float64(291.56)), 1: (np.float64(149.69), np.float64(0.76), np.float64(284.42)), 2: (np.float64(238.81), np.float64(0.66), np.float64(209.51)), 3: (np.float64(43.46), np.float64(1.33), np.float64(193.03))}
+Traceback (most recent call last):
+  File "C:\Users\DarkA\AppData\Local\Temp\claude\c--Users-DarkA-OneDrive-Escritorio-Facultad-3er-a-o-ML-TPF\71199607-81f8-4196-9578-7c6e3b376925\scratchpad\obj\gb_grid.py", line 9, in <module>
+    todas = [pickle.load(open(AQUI / f"{t}.pkl", "rb")) for t in tag_grid.split(",")]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DarkA\AppData\Local\Temp\claude\c--Users-DarkA-OneDrive-Escritorio-Facultad-3er-a-o-ML-TPF\71199607-81f8-4196-9578-7c6e3b376925\scratchpad\obj\gb_grid.py", line 9, in <listcomp>
+    todas = [pickle.load(open(AQUI / f"{t}.pkl", "rb")) for t in tag_grid.split(",")]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\DarkA\\AppData\\Local\\Temp\\claude\\c--Users-DarkA-OneDrive-Escritorio-Facultad-3er-a-o-ML-TPF\\71199607-81f8-4196-9578-7c6e3b376925\\scratchpad\\obj\\grid_l4.0.pkl'
