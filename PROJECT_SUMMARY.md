@@ -9425,6 +9425,13 @@ conozca un Riot ID puede calcular su hash y encontrarlo. Con la clave secreta $k
 en un paquete nuevo. *Descartado:* numerar los jugadores (1, 2, ...) depende del orden y cambia entre paquetes;
 sacar los PUUID, porque ya son cifrados por proyecto.
 
+**Paquete publicado (2026-11-26).** DOI [10.5281/zenodo.24571527](https://doi.org/10.5281/zenodo.24571527). Los
+timelines son los completos del compañero (209.817 partidas con timeline y 34 sin él; copia del Drive verificada con
+`quick_check` y con el conteo de su manifiesto), empaquetados con la misma clave, así que los seudónimos de la base
+y de los splits no cambian respecto del paquete del 25/11. `timelines.db` no tenía columnas con Riot ID; en una
+muestra de 300 JSON descomprimidos tampoco aparecen nombres (Timeline-V5 trae solo PUUID). La integridad de la
+subida se comprobó contra el MD5 que muestra Zenodo de cada archivo.
+
 ## 10. Huella de Estilo: Reidentificación y Detección de Cambio de Persona (2026-10-24)
 
 ### 10.0. Pregunta y motivación

@@ -61,7 +61,7 @@ pip install -r requirements.txt
 
 ## Manual de uso
 
-**Datos.** No están en el repo: se bajan de Zenodo (DOI: _pendiente_) y se descomprimen en `data/`:
+**Datos.** No están en el repo: se bajan de Zenodo ([10.5281/zenodo.24571527](https://doi.org/10.5281/zenodo.24571527)) y se descomprimen en `data/`:
 
 | Archivo | Va en | Qué es |
 | :--- | :--- | :--- |
@@ -142,5 +142,7 @@ deduplicación, coherencia de los 4 CSV) están en [`AGENTS.md`](AGENTS.md) §3.
 ## Licencia
 
 Código bajo licencia [MIT](LICENSE): se puede usar, copiar y modificar libremente, sin garantía de ningún tipo.
+Los datos publicados en [Zenodo](https://doi.org/10.5281/zenodo.24571527) están bajo
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): se pueden usar y redistribuir citando la fuente.
 Los autores no se hacen responsables por ningún uso del código ni de los datos. Los datos vienen de la API de Riot
 Games; League of Legends es una marca de Riot Games, Inc., que no avala ni patrocina este proyecto.
